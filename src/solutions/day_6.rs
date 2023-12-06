@@ -1,1 +1,3 @@
-pub fn solve(_input: &str) {}
+pub fn solve(input: &str) {
+    
+}
