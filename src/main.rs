@@ -1,5 +1,7 @@
+#![feature(vec_push_within_capacity, int_roundings)]
+
 use chrono::prelude::*;
-use std::env;
+use std::{env, time::Instant};
 pub mod iter_helper;
 mod solutions;
 
@@ -28,5 +30,8 @@ fn main() {
         =========================================================="
     );
 
+    let start_time = Instant::now();
     solutions::run_day(day, test);
+    let duration = start_time.elapsed().as_secs_f64();
+    println!("This day took {duration} seconds");
 }

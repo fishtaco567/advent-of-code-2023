@@ -20,8 +20,12 @@ pub fn solve(input: &str) {
     for line in lines {
         if let Some(c) = line.chars().next() {
             if c.is_numeric() {
-                let (dst, src, len) = line.split_ascii_whitespace().parse_all::<i64>().collect_tuple().unwrap();
-                
+                let (dst, src, len) = line
+                    .split_ascii_whitespace()
+                    .parse_all::<i64>()
+                    .collect_tuple()
+                    .unwrap();
+
                 ranges[cur_set].push((dst, src, len));
             } else if c.is_whitespace() {
             } else {
@@ -57,8 +61,6 @@ pub fn solve(input: &str) {
         let mut next = Vec::new();
 
         for range in &ranges {
-            println!("{:?}", cur);
-
             for (dst, src, len) in range {
                 let mut retained = Vec::new();
                 while let Some(r) = cur.pop() {
@@ -81,7 +83,7 @@ pub fn solve(input: &str) {
                                 let excluded = r.start..src_range.start;
                                 retained.push(excluded);
                             }
-                            
+
                             if src_range.end < r.end {
                                 let included = (src_range.start + offset)..(src_range.end + offset);
                                 let overflow = src_range.end..r.end;
@@ -111,7 +113,7 @@ pub fn solve(input: &str) {
             lowest_seed_2 = lowest_seed_2.min(r.start);
         }
     }
-    
+
     let res = lowest_seed;
 
     println!("Part 1 is {res}");
